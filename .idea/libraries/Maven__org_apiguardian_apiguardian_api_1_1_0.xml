@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Maven: org.apiguardian:apiguardian-api:1.1.0">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar!/" />
+      <root url="jar://C:/Program Files/Java/openjfx-11.0.2_windows-x64_bin-sdk.zip!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0-sources.jar!/" />
+      <root url="file://C:/Program Files/Java/javafx-sdk-11.0.2/lib" />
+    </SOURCES>
+    <jarDirectory url="file://C:/Program Files/Java/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
+  </library>
+</component>
