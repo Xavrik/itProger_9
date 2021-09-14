@@ -1,9 +1,16 @@
 package com.example.itproger_9;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 public class RegController {
 
@@ -31,12 +38,16 @@ public class RegController {
     @FXML
     private Button btn_auth;
 
+    private  DB db = new DB();
+
+
     @FXML
     void initialize() {
         btn_reg.setOnAction(event -> {
             login_reg.setStyle("-fx-border-color: #fafafa");
             email_reg.setStyle("-fx-border-color: #fafafa");
             passw_reg.setStyle("-fx-border-color: #fafafa");
+            btn_reg.setText("Зарегистрироваться");
 
             if(login_reg.getCharacters().length() <= 3){
                 login_reg.setStyle("-fx-border-color: red");
@@ -51,6 +62,69 @@ public class RegController {
                 btn_reg.setText("Поставьте галочку");
                 return;
             }
+            String pass = md5String(passw_reg.getCharacters().toString());
+            try {
+               boolean isReg=  db.regUser(login_reg.getCharacters().toString(), email_reg.getCharacters().toString(), pass);
+               if(isReg){
+                   login_reg.setText("");
+                   email_reg.setText("");
+                   passw_reg.setText("");
+                   btn_reg.setText("Готово");
+               }else
+                   login_reg.setText("ВВедите другой логин");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         });
+        btn_auth.setOnAction(event -> {
+            login_auth.setStyle("-fx-border-color: #fafafa");
+            passw_auth.setStyle("-fx-border-color: #fafafa");
+            btn_reg.setText("Зарегистрироваться");
+
+            if(login_auth.getCharacters().length() <= 3){
+                login_auth.setStyle("-fx-border-color: red");
+                return;
+            } else if(passw_auth.getCharacters().length() <= 3){
+                passw_auth.setStyle("-fx-border-color: red");
+                return;
+            }
+            String pass = md5String(passw_auth.getCharacters().toString());
+            try {
+                boolean isAuth=  db.authUser(login_auth.getCharacters().toString(), pass);
+                if(isAuth){
+                    login_auth.setText("");
+                    passw_auth.setText("");
+                    btn_auth.setText("Готово");
+                }else
+                    login_auth.setText("Не найден логин");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    public  static String md5String(String pass){
+        MessageDigest messageDigest = null;
+        byte[] digest = new byte[0];
+
+        try {
+            messageDigest = MessageDigest.getInstance("MD5");
+            messageDigest.reset();
+            messageDigest.update(pass.getBytes(StandardCharsets.UTF_8));
+            digest = messageDigest.digest();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        BigInteger bigInteger = new BigInteger(1,digest);
+        String md5Hex = bigInteger.toString(16);
+        while (md5Hex.length() < 32){
+            md5Hex = "0"+md5Hex;
+        }
+        return md5Hex;
     }
 }

@@ -22,7 +22,27 @@ public class DB {
         dbConn = getDbConnection();
         System.out.println(dbConn.isValid(1000));
     }
+    public boolean regUser(String login, String email, String password) throws SQLException, ClassNotFoundException {
+        String sql = "INSERT INTO `users`(`login`, `email`, `password`) VALUES (?,?,?)";
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery("SELECT * FROM `users` WHERE `login` = \""+ login +"\" LIMIT 1");
+        if(res.next())
+            return false;
 
+        PreparedStatement prST = getDbConnection().prepareStatement(sql);
+        prST.setString(1, login);
+        prST.setString(2, email);
+        prST.setString(3, password);
+        prST.executeUpdate();
+        return true;
+    }
+    public boolean authUser(String login, String password) throws SQLException, ClassNotFoundException {
+        Statement statement = getDbConnection().createStatement();
+        String sql = "SELECT * FROM `users` WHERE `login` = \"" + login + "\" AND `password` = \"" + password + "\" LIMIT 1";
+        ResultSet res = statement.executeQuery(sql);
+        return res.next();
+
+    }
 
 }
 
