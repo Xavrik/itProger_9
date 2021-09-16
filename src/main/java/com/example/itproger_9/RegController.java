@@ -1,11 +1,19 @@
 package com.example.itproger_9;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -94,14 +102,28 @@ public class RegController {
             try {
                 boolean isAuth=  db.authUser(login_auth.getCharacters().toString(), pass);
                 if(isAuth){
+                    FileOutputStream fos = new FileOutputStream("user.settings");
+                    ObjectOutputStream oos = new ObjectOutputStream(fos);
+                    oos.writeObject(new User(login_auth.getCharacters().toString()));
+                    oos.close();
+
                     login_auth.setText("");
                     passw_auth.setText("");
                     btn_auth.setText("Готово");
+
+                    Parent root  = FXMLLoader.load(getClass().getResource("main.fxml"));
+                    Stage stage = (Stage) ( (Node) event.getSource()).getScene().getWindow();
+                    stage.setTitle("Программа itProger");
+                    stage.setScene(new Scene(root, 600, 400) );
+                    stage.show();
+
                 }else
-                    login_auth.setText("Не найден логин");
+                    btn_auth.setText("Не найден логин");
             } catch (SQLException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         });
