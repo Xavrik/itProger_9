@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itproger_9.viewArticleController">
+    <children>
+        <Button fx:id="btn_exit" layoutX="476.0" layoutY="30.0" mnemonicParsing="false" text="Выйти" textFill="#f2efef">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+        <ScrollPane fx:id="VA_scroll" focusTraversable="false" hbarPolicy="NEVER" layoutY="133.0" prefHeight="268.0" prefWidth="600.0" stylesheets="@text-area.css">
+         <content>
+            <Label fx:id="VA_text" alignment="TOP_LEFT" focusTraversable="false" prefHeight="281.0" prefWidth="599.0" style="-fx-background-color: #343434; -fx-label-padding: 0 20;" stylesheets="@text-area.css" text="text" textFill="#f2f0f0">
+               <font>
+                  <Font name="Calibri" size="16.0" />
+               </font>
+            </Label>
+         </content>
+        </ScrollPane>
+      <Label fx:id="VA_title" alignment="TOP_LEFT" focusTraversable="false" layoutX="1.0" layoutY="87.0" prefHeight="36.0" prefWidth="600.0" style="-fx-label-padding: 0 20;" text="title" textFill="#eeeded">
+         <font>
+            <Font name="Calibri Bold" size="34.0" />
+         </font>
+      </Label>
+        <Button fx:id="btn_back" layoutX="28.0" layoutY="33.0" mnemonicParsing="false" text="Назад" textFill="#f2efef">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+    </children>
+</AnchorPane>

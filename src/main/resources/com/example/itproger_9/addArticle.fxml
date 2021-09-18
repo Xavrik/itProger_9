@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #343434;" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.itproger_9.AddArticleController">
+    <children>
+        <Label layoutX="167.0" layoutY="34.0" text="Добавление новой статьи" textFill="WHITE">
+            <font>
+                <Font name="Arial Narrow Bold" size="25.0" />
+            </font>
+        </Label>
+        <TextField fx:id="title_field" focusTraversable="false" layoutX="93.0" layoutY="85.0" prefHeight="38.0" prefWidth="397.0" promptText="Названия статьи" styleClass="text-input" stylesheets="@styles.css">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+        </TextField>
+        <Button fx:id="btn_add" layoutX="249.0" layoutY="351.0" mnemonicParsing="false" text="Добавить" textFill="#f2efef">
+            <font>
+                <Font name="Arial" size="14.0" />
+            </font>
+            <cursor>
+                <Cursor fx:constant="HAND" />
+            </cursor>
+        </Button>
+      <TextArea fx:id="inro_filed" focusTraversable="false" layoutX="20.0" layoutY="140.0" prefHeight="191.0" prefWidth="267.0" promptText="Анонс статьи" stylesheets="@text-area.css">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </TextArea>
+      <TextArea fx:id="text_filed1" focusTraversable="false" layoutX="314.0" layoutY="140.0" prefHeight="191.0" prefWidth="267.0" promptText="Текст статьи" stylesheets="@text-area.css">
+         <font>
+            <Font name="Calibri" size="14.0" />
+         </font>
+      </TextArea>
+    </children>
+</AnchorPane>

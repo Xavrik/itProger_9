@@ -43,6 +43,37 @@ public class DB {
         return res.next();
 
     }
+    public ResultSet getArticles() throws  SQLException,ClassNotFoundException{
+        String sql = "SELECT `id`, `title` ,`intro` FROM `articles`";
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sql);
+        return  res;
+    }
+
+
+    public void addArticle (String title, String intro, String text) throws  SQLException, ClassNotFoundException{
+        String sql = "INSERT INTO `articles`(`title`, `intro`, `text`, `views` ) VALUES (?,?,?,?)";
+        PreparedStatement prST = getDbConnection().prepareStatement(sql);
+
+        prST.setString(1, title);
+        prST.setString(2, intro);
+        prST.setString(3, text);
+        prST.setInt(4, 15);
+        prST.executeUpdate();
+
+    }
+
+
+    public ResultSet viewArticles(String id) throws  SQLException,ClassNotFoundException{
+        String sql = "SELECT `title` ,`text` FROM `articles` WHERE `id` = ?";
+        PreparedStatement prST = getDbConnection().prepareStatement(sql);
+        prST.setString(1, String.valueOf(Integer.parseInt(id)));
+        Statement statement = getDbConnection().createStatement();
+        ResultSet res = statement.executeQuery(sql);
+        return  res;
+    }
+
+
 
 }
 
